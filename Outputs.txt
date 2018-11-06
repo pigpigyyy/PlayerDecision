@@ -1,0 +1,82 @@
+Decision Tree:
+If (Nearest_Enemy_Distance <= 497.0)
+	If (Nearest_Enemy_Distance <= 132.0)
+		If (Nearest_Enemy_Action is {Flee,JumpForward,Wait,Approaching})
+			Prediction: MeleeAttack
+		Else (Nearest_Enemy_Action is {RangeAttack,MeleeAttack,JumpBackward})
+			If (Enemies_In_Detect_Range <= 1.0)
+				Prediction: MeleeAttack
+			Else (Enemies_In_Detect_Range > 1.0)
+				If (Enemies_Total_Hp_In_Detect_Range <= 813.0)
+					Prediction: JumpBackward
+				Else (Enemies_Total_Hp_In_Detect_Range > 813.0)
+					Prediction: Flee
+	Else (Nearest_Enemy_Distance > 132.0)
+		If (Current_Player_Hp <= 75.0)
+			If (Obstacle_Distance <= 302.0)
+				If (Current_Player_Hp <= 31.0)
+					Prediction: Flee
+				Else (Current_Player_Hp > 31.0)
+					Prediction: RangeAttack
+			Else (Obstacle_Distance > 302.0)
+				If (Enemies_Total_Hp_In_Detect_Range <= 59.0)
+					Prediction: Approaching
+				Else (Enemies_Total_Hp_In_Detect_Range > 59.0)
+					Prediction: RangeAttack
+		Else (Current_Player_Hp > 75.0)
+			If (Current_Player_Hp <= 88.0)
+				If (Nearest_Enemy_Distance <= 231.0)
+					Prediction: Approaching
+				Else (Nearest_Enemy_Distance > 231.0)
+					Prediction: JumpForward
+			Else (Current_Player_Hp > 88.0)
+				If (Nearest_Enemy_Hp <= 57.0)
+					Prediction: JumpBackward
+				Else (Nearest_Enemy_Hp > 57.0)
+					Prediction: Flee
+Else (Nearest_Enemy_Distance > 497.0)
+	If (Current_Player_Hp <= 28.0)
+		If (Obstacle_Distance <= 809.0)
+			If (Nearest_Enemy_Hp <= 49.0)
+				If (Enemies_In_Detect_Range <= 4.0)
+					Prediction: RangeAttack
+				Else (Enemies_In_Detect_Range > 4.0)
+					Prediction: Flee
+			Else (Nearest_Enemy_Hp > 49.0)
+				If (Obstacle_Distance <= 558.0)
+					Prediction: Flee
+				Else (Obstacle_Distance > 558.0)
+					Prediction: Wait
+		Else (Obstacle_Distance > 809.0)
+			Prediction: Approaching
+	Else (Current_Player_Hp > 28.0)
+		If (Current_Player_Action is {RangeAttack,JumpForward,Flee,Approaching,Wait})
+			If (Enemies_Total_Hp_In_Detect_Range <= 17.0)
+				Prediction: JumpForward
+			Else (Enemies_Total_Hp_In_Detect_Range > 17.0)
+				Prediction: Approaching
+		Else (Current_Player_Action is {JumpBackward,MeleeAttack})
+			If (Obstacle_Distance <= 403.0)
+				If (Obstacle_Distance <= 264.0)
+					Prediction: Approaching
+				Else (Obstacle_Distance > 264.0)
+					Prediction: Wait
+			Else (Obstacle_Distance > 403.0)
+				If (Nearest_Enemy_Distance <= 885.0)
+					Prediction: Approaching
+				Else (Nearest_Enemy_Distance > 885.0)
+					Prediction: Approaching
+
+accuracy：0.88
+
+Feature Importances：
+Nearest_Enemy_Distance：0.34234574283092345
+Current_Player_Hp：0.23242888196394562
+Obstacle_Distance：0.17843084328677153
+Enemies_Total_Hp_In_Detect_Range：0.0958592551641428
+Enemies_In_Detect_Range：0.04258529108384024
+Nearest_Enemy_Hp：0.0384641338821783
+Nearest_Enemy_Action_Index：0.03804145109226421
+Current_Player_Action_Index：0.03184440069593384
+Nearest_Enemy_AttackPower：0.0
+

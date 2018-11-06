@@ -1,0 +1,8 @@
+﻿ID,Unit_Actions,Affect_Range
+1,Approaching,0
+2,Flee,0
+3,MeleeAttack,50
+4,RangeAttack,400
+5,JumpForward,150
+6,JumpBackward,150
+7,Wait,0
